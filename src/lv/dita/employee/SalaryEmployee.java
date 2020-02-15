@@ -2,32 +2,19 @@ package lv.dita.employee;
 
 import lv.dita.paysystem.Payee;
 
-public class SalaryEmployee implements Payee{
-	
-	private String name;
-	private Integer bankAccount;
-	private double grossSalary;
-	
-	SalaryEmployee (String name, Integer bankAccount, double grossSalary){
-		this.name = name;
-		this.bankAccount = bankAccount;
-		this.grossSalary = grossSalary;
+public class SalaryEmployee extends Employee {
+
+	public SalaryEmployee(String name, Integer bankAccount, double grossSalary) {
+		super(name, bankAccount, grossSalary);
 	}
 
-	@Override
-	public String name() {
-		return name;
-	}
-
-	@Override
-	public Integer bankAccount() {
-		return bankAccount;
-	}
-
-	@Override
 	public Double grossPayment() {
-		return grossSalary;
+		return grossSalary + doCurrentBonus();
 	}
-	
+
+	@Override
+	public void giveBonus(Double percentage) {
+		currentBonus += grossSalary*(percentage/100.00);
+	}
 
 }
